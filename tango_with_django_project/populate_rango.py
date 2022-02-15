@@ -1,9 +1,11 @@
 import os
+from random import random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','tango_with_django_project.settings')
 
 import django
 django.setup()
 from rango.models import Category, Page
+import random
 
 def populate():
     # First, we will create lists of dictionaries containing the pages
@@ -38,6 +40,10 @@ def populate():
         'Django': {'pages': django_pages},
         'Other Frameworks': {'pages': other_pages} }
 
+    #cats = {'Python': {'pages': python_pages,''},
+        # 'Django': {'pages': django_pages},
+        # 'Other Frameworks': {'pages': other_pages} }
+
     # If you want to add more categories or pages,
     # add them to the dictionaries above.
 
@@ -53,22 +59,33 @@ def populate():
         for p in Page.objects.filter(category=c):
             print(f'- {c}: {p}')
 
-def add_page(cat, title, url, views=0):
+# def add_page(cat, title, url, views=0):
+#     p = Page.objects.get_or_create(category=cat, title=title)[0]
+#     p.url=url
+#     p.views=views
+#     p.save()
+#     return p
+
+def add_page(cat, title, url):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
     p.url=url
-    p.views=views
+    #a=1#random.randint(0,200)
+    p.views=random.randint(1,880)   #add random 
     p.save()
     return p
 
 def add_cat(name):
     c = Category.objects.get_or_create(name=name,views=0,likes=0)[0]
     if name=='Python':
+        #c views and c likes
         c.views=128
         c.likes=64
     elif name=='Django':
+        # django views and likes
         c.views=64
         c.likes=32
     else:
+        #other views and likes
         c.views=32
         c.likes=16
     c.save()

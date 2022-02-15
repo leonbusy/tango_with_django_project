@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import imp
+#import imp
 from django.contrib import admin
 from django.urls import path
 from rango import views
@@ -25,8 +25,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('',views.index, name='index'),
     #path('rango/',include('rango.urls')),
-    
+    #path('rango/category/',views.show_category,name='show_category'),
     path('admin/', admin.site.urls),   #supply admin path to admin
     path('',include('rango.urls')),
-    path('', admin.site.urls),
+    #path(r'rango/category/<slug:category_name_slug>/',view=views.show_category,name='show_category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
