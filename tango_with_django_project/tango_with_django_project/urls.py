@@ -29,4 +29,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),   #supply admin path to admin
     path('',include('rango.urls')),
     #path(r'rango/category/<slug:category_name_slug>/',view=views.show_category,name='show_category'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

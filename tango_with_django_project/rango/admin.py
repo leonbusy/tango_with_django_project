@@ -2,6 +2,9 @@ from csv import list_dialects
 from django import views
 from django.contrib import admin
 from rango.models import Category, Page
+from rango.models import UserProfile
+
+
 # Register your models here.
 
 class PageAdmin(admin.ModelAdmin):
@@ -19,3 +22,4 @@ admin.site.register(Page,PageAdmin)
 # admin.site.register(CategoryAdmin)
 # admin.site.register(Page)
 # admin.site.register(PageAdmin)
+admin.site.register(UserProfile)
